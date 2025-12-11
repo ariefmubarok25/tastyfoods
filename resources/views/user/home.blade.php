@@ -13,7 +13,7 @@
 
     <!-- Background Right 50% -->
     <div class="absolute top-0 right-0 w-1/2 h-full">
-        <img src="{{ asset('storage/hero_home.png') }}"
+        <img src="{{ asset('storage/user/hero_home.png') }}"
              class="w-full h-full object-cover object-top"
              alt="Hero Image">
     </div>
@@ -60,7 +60,7 @@
 
 <section
     class="pt-32 pb-20 -mt-32 bg-gray-900 bg-cover bg-top"
-    style="background-image: url('{{ asset('storage/Group70@2x.png') }}')">
+    style="background-image: url('{{ asset('storage/user/Group70@2x.png') }}')">
 
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
