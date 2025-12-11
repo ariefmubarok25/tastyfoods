@@ -2,22 +2,58 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Gallery;
 use Illuminate\Http\Request;
+use App\Models\Gallery;
 
 class GalleryController extends Controller
 {
-    // Halaman list semua foto
+    /**
+     * Display gallery page
+     */
     public function index()
     {
-        $gallery = Gallery::latest()->paginate(12);
-        return view('user.gallery.index', compact('gallery'));
+        // Ambil semua gallery berdasarkan created_at terbaru
+        $galleryImages = Gallery::orderBy('created_at', 'desc')->get();
+
+        // Ambil 3 gambar pertama untuk carousel
+        $carouselImages = $galleryImages->take(3);
+
+        return view('user.gallery.index', compact('galleryImages', 'carouselImages'));
     }
 
-    // Halaman detail foto (opsional, kalau mau)
-    public function show($id)
+    /**
+     * Debug images for troubleshooting - SESUAI DENGAN ROUTE
+     */
+    public function debugImages()
     {
-        $item = Gallery::findOrFail($id);
-        return view('user.gallery.show', compact('item'));
+        $galleryData = Gallery::all();
+
+        return response()->json([
+            'message' => 'Debug Gallery Images from Database',
+            'total_items' => $galleryData->count(),
+            'data' => $galleryData->map(function($item) {
+                return [
+                    'id' => $item->id,
+                    'title' => $item->title,
+                    'image' => $item->image,
+                    'description' => $item->description,
+                    'image_url' => asset('storage/gallery/' . $item->image),
+                    'created_at' => $item->created_at
+                ];
+            })
+        ]);
+    }
+
+    /**
+     * Additional debug function untuk test
+     */
+    public function testGallery()
+    {
+        return response()->json([
+            'message' => 'Gallery Controller is working!',
+            'route' => 'gallery',
+            'method' => 'index',
+            'timestamp' => now()
+        ]);
     }
 }

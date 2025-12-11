@@ -13,9 +13,7 @@
 
     {{-- ===================== NAVBAR ===================== --}}
     @php
-        // DEFAULT: navbar untuk halaman biasa (putih)
-        $type = $navbar_type ?? 'white';
-
+        $type = $navbar_type ?? 'black';
         $textColor = $type === 'home' ? 'text-black' : 'text-white';
         $menuPosition = $type === 'home' ? 'space-x-8' : 'ml-auto space-x-10';
         $logoColor = $type === 'home' ? 'text-black' : 'text-white';
@@ -24,7 +22,7 @@
     <nav class="absolute top-0 left-0 w-full z-50 py-6 px-10 flex items-center">
 
         {{-- LOGO --}}
-        <div class="text-2xl font-bold {{ $logoColor }}">
+        <div class="text-2xl font-bold {{ $logoColor }} ml-10">
             TASTY FOOD
         </div>
 
@@ -112,6 +110,9 @@
         </p>
 
     </footer>
+
+    {{-- ===================== PAGE SCRIPTS ===================== --}}
+    @stack('scripts')
 
 </body>
 </html>

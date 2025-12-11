@@ -1,27 +1,37 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\NewsController;
-use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\NewsController;        // USER News
+use App\Http\Controllers\GalleryController;     // USER Gallery
+use App\Http\Controllers\HomeController;        // USER Home
+use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
 use App\Http\Controllers\Admin\LocationController;
-use App\Http\Controllers\HomeController;
 
 // ==========================
 // HALAMAN UTAMA USER
 // ==========================
 
-// Home Page (ambil dari HomeController)
+// Home Page
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Halaman Berita
-Route::get('/berita', [NewsController::class, 'userIndex'])->name('news.index');
+// Halaman Tentang (ABOUT)
+Route::view('/tentang', 'user.about')->name('about');
+
+// Halaman Berita UNTUK USER
+Route::get('/berita', [NewsController::class, 'index'])->name('news.index');
 Route::get('/berita/{id}', [NewsController::class, 'show'])->name('news.show');
+Route::get('/news', [NewsController::class, 'index'])->name('news'); // Alias untuk navbar
 
-// Halaman Galeri
-Route::get('/galeri', [GalleryController::class, 'userIndex'])->name('gallery.index');
+// Halaman Galeri UNTUK USER
+Route::get('/galeri', [GalleryController::class, 'index'])->name('gallery.index');
+Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery'); // Alias untuk navbar
 
-// Halaman Kontak (opsional, jika ada)
-Route::view('/kontak', 'user.contact')->name('contact');
+// Halaman Kontak
+Route::view('/kontak', 'user.contact.index')->name('contact');
+Route::get('/contact', function () {
+    return view('user.contact');
+})->name('contact'); // Alias untuk navbar
 
 
 // ==========================
@@ -37,13 +47,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.index', compact('totalNews', 'totalGallery'));
     })->name('dashboard');
 
-    // CRUD Berita
-    Route::resource('news', NewsController::class);
+    // CRUD Berita UNTUK ADMIN
+    Route::resource('news', AdminNewsController::class);
 
-    // CRUD Gallery
-    Route::resource('gallery', GalleryController::class);
+    // CRUD Gallery UNTUK ADMIN
+    Route::resource('gallery', AdminGalleryController::class);
 
-    // Lokasi — tidak ada create, hanya index & edit
+    // Lokasi
     Route::get('/location', [LocationController::class, 'index'])->name('location.index');
     Route::get('/location/{location}/edit', [LocationController::class, 'edit'])->name('location.edit');
     Route::put('/location/{location}', [LocationController::class, 'update'])->name('location.update');
