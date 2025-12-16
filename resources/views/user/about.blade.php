@@ -5,21 +5,21 @@
 @section('content')
 
     <!-- Hero Section -->
-    <section class="relative h-[70vh] flex items-center justify-center">
+    <section class="relative h-[35vh] md:h-[70vh] flex items-center justify-center">
         <div class="absolute inset-0">
-            <img src="{{ asset('monika-grabkowska-P1aohbiT-EY-unsplash.jpg') }}" class="w-full h-full object-cover">
+            <img src="{{ asset('storage/user/monika-grabkowska-P1aohbiT-EY-unsplash.jpg') }}" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-black/50"></div>
         </div>
 
-        <div class="relative z-10 text-center text-white">
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-wide">
+       <div class="relative z-10 text-white container mx-auto px-4 md:pl-20">
+            <h1 class="text-center md:text-left text-4xl md:text-5xl font-bold tracking-widest">
                 TENTANG KAMI
             </h1>
         </div>
     </section>
 
     <!-- Tentang Kami Section -->
-    <section class="py-16 bg-white">
+    <section class="py-16 bg-gray-100">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
@@ -34,16 +34,17 @@
                         </p>
                     </div>
                 </div>
-
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="aspect-square rounded-2xl shadow-md overflow-hidden">
-                        <img src="{{ asset('brooke-lark-oaz0raysASk-unsplash.jpg') }}" class="w-full h-full object-cover hover:scale-105 transition">
+                    <div class="aspect-[3/4] rounded-2xl shadow-md overflow-hidden">
+                        <img src="{{ asset('storage/user/brooke-lark-oaz0raysASk-unsplash.jpg') }}"
+                            class="w-full h-full object-cover hover:scale-105 transition">
                     </div>
-                    <div class="aspect-square rounded-2xl shadow-md overflow-hidden">
-                        <img src="{{ asset('sebastian-coman-photography-eBmyH7oO5wY-unsplash.jpg') }}" class="w-full h-full object-cover hover:scale-105 transition">
+
+                    <div class="aspect-[3/4] rounded-2xl shadow-md overflow-hidden">
+                        <img src="{{ asset('storage/user/sebastian-coman-photography-eBmyH7oO5wY-unsplash.jpg') }}"
+                            class="w-full h-full object-cover hover:scale-105 transition">
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -55,10 +56,10 @@
 
                 <div class="grid grid-cols-2 gap-4">
                     <div class="aspect-square rounded-2xl shadow-md overflow-hidden">
-                        <img src="{{ asset('fathul-abrar-T-qI_MI2EMA-unsplash.jpg') }}" class="w-full h-full object-cover hover:scale-105 transition">
+                        <img src="{{ asset('storage/user/fathul-abrar-T-qI_MI2EMA-unsplash.jpg') }}" class="w-full h-full object-cover hover:scale-105 transition">
                     </div>
                     <div class="aspect-square rounded-2xl shadow-md overflow-hidden">
-                        <img src="{{ asset('michele-blackwell-rAyCBQTH7ws-unsplash.jpg') }}" class="w-full h-full object-cover hover:scale-105 transition">
+                        <img src="{{ asset('storage/user/michele-blackwell-rAyCBQTH7ws-unsplash.jpg') }}" class="w-full h-full object-cover hover:scale-105 transition">
                     </div>
                 </div>
 
@@ -90,8 +91,8 @@
                 </div>
 
                 <div>
-                    <div class="aspect-[4/3] rounded-2xl shadow-lg overflow-hidden">
-                        <img src="{{ asset('sanket-shah-SVA7TyHxojY-unsplash.jpg') }}" class="w-full h-full object-cover hover:scale-105 transition">
+                    <div class="aspect-[16/9] rounded-2xl shadow-lg overflow-hidden">
+                        <img src="{{ asset('storage/user/sanket-shah-SVA7TyHxojY-unsplash.jpg') }}" class="w-full h-full object-cover hover:scale-105 transition">
                     </div>
                 </div>
 
