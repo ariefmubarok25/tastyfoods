@@ -51,6 +51,14 @@
                 </a>
             </li>
 
+             {{-- Pesan --}}
+            <li>
+                <a href="{{ route('admin.contacts') }}"
+                   class="text-gray-600 hover:text-black">
+                   Pesan
+                </a>
+            </li>
+
         </ul>
     </nav>
 

@@ -4,34 +4,38 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;        // USER News
 use App\Http\Controllers\GalleryController;     // USER Gallery
 use App\Http\Controllers\HomeController;        // USER Home
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\LocationController;
 
+
 // ==========================
-// HALAMAN UTAMA USER
+// HALAMAN USER
 // ==========================
 
-// Home Page
+// Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Halaman Tentang (ABOUT)
+// Tentang
 Route::view('/tentang', 'user.about')->name('about');
 
-// Halaman Berita UNTUK USER
+// Berita
 Route::get('/berita', [NewsController::class, 'index'])->name('news.index');
 Route::get('/berita/{id}', [NewsController::class, 'show'])->name('news.show');
-Route::get('/news', [NewsController::class, 'index'])->name('news'); // Alias untuk navbar
 
-// Halaman Galeri UNTUK USER
+// 🔑 ALIAS UNTUK NAVBAR
+Route::get('/news', [NewsController::class, 'index'])->name('news');
+
+// Galeri
 Route::get('/galeri', [GalleryController::class, 'index'])->name('gallery.index');
-Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery'); // Alias untuk navbar
+Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
 
-// Halaman Kontak
-Route::view('/kontak', 'user.contact.index')->name('contact');
-Route::get('/contact', function () {
-    return view('user.contact');
-})->name('contact'); // Alias untuk navbar
+// Kontak (PAKAI CONTROLLER)
+Route::get('/kontak', [ContactController::class, 'index'])->name('contact');
+Route::post('/kontak', [ContactController::class, 'store'])->name('contact.store');
+
 
 
 // ==========================
@@ -57,4 +61,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/location', [LocationController::class, 'index'])->name('location.index');
     Route::get('/location/{location}/edit', [LocationController::class, 'edit'])->name('location.edit');
     Route::put('/location/{location}', [LocationController::class, 'update'])->name('location.update');
+
+    // Contacts
+    Route::get('/contacts', [AdminContactController::class, 'index'])->name('contacts');
+    Route::get('/contacts/{id}', [AdminContactController::class, 'show'])->name('contacts.show');
+    Route::delete('/contacts/{id}', [AdminContactController::class, 'destroy'])->name('contacts.destroy');
 });
