@@ -12,7 +12,7 @@
 <body class="bg-gray-100">
 
     <!-- NAVBAR -->
-    <nav class="bg-green-900 shadow-md px-6 py-4 flex justify-between items-center">
+    <nav class="bg-black shadow-md px-6 py-4 flex justify-between items-center">
         <div class="text-xl font-semibold text-white">
             Admin Panel
         </div>
@@ -22,7 +22,7 @@
             {{-- Dashboard --}}
             <li>
                 <a href="{{ route('admin.dashboard') }}"
-                   class="text-white hover:text-black">
+                   class="text-white hover:text-gray-300">
                    Dashboard
                 </a>
             </li>
@@ -30,7 +30,7 @@
             {{-- Berita --}}
             <li>
                 <a href="{{ route('admin.news.index') }}"
-                   class="text-white hover:text-black">
+                   class="text-white hover:text-gray-300">
                    Berita
                 </a>
             </li>
@@ -38,7 +38,7 @@
             {{-- Gallery --}}
             <li>
                 <a href="{{ route('admin.gallery.index') }}"
-                   class="text-white hover:text-black">
+                   class="text-white hover:text-gray-300">
                    Galeri
                 </a>
             </li>
@@ -46,7 +46,7 @@
             {{-- Lokasi (Tambahan Baru) --}}
             <li>
                 <a href="{{ route('admin.location.index') }}"
-                   class="text-white hover:text-black">
+                   class="text-white hover:text-gray-300">
                    Lokasi
                 </a>
             </li>
@@ -54,7 +54,7 @@
              {{-- Pesan --}}
             <li>
                 <a href="{{ route('admin.contacts') }}"
-                   class="text-white hover:text-black">
+                   class="text-white hover:text-gray-300">
                    Pesan
                 </a>
             </li>
