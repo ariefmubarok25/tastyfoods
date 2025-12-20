@@ -34,8 +34,8 @@
             <input type="file" name="image" accept="image/*">
         </div>
 
-        <button class="px-5 py-2 bg-blue-600 text-white rounded">Update</button>
-        <a href="{{ route('admin.gallery.index') }}" class="px-5 py-2 bg-gray-400 text-white rounded">Kembali</a>
+        <button class="px-5 py-2 bg-green-800 text-white rounded">Update</button>
+        <a href="{{ route('admin.gallery.index') }}" class="px-5 py-2 bg-gray-600 text-white rounded">Kembali</a>
     </form>
 </div>
 

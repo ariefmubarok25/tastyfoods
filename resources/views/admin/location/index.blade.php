@@ -23,7 +23,7 @@
 
 <div class="mt-4">
     <a href="{{ route('admin.location.edit', $location->id) }}"
-       class="px-4 py-2 bg-blue-600 text-white rounded">
+       class="px-4 py-2 bg-gray-800 text-white rounded">
         Edit Lokasi
     </a>
 </div>

@@ -14,12 +14,12 @@
 
 <div class="bg-white shadow rounded-lg p-4">
     <table class="min-w-full">
-        <thead class="bg-gray-100 border-b">
+        <thead class="bg-gray-900 border-b">
             <tr>
-                <th class="px-4 py-3 text-left">Nama</th>
-                <th class="px-4 py-3 text-left">Email</th>
-                <th class="px-4 py-3 text-left">Subjek</th>
-                <th class="px-4 py-3 text-left">Aksi</th>
+                <th class="px-4 py-3 text-white text-left">Nama</th>
+                <th class="px-4 py-3 text-white text-left">Email</th>
+                <th class="px-4 py-3 text-white text-left">Subjek</th>
+                <th class="px-4 py-3 text-white text-left">Aksi</th>
             </tr>
         </thead>
 
@@ -40,7 +40,7 @@
 
                 <td class="px-4 py-3 space-x-2">
                     <a href="{{ route('admin.contacts.show', $contact->id) }}"
-                       class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
+                       class="px-3 py-1 bg-green-800 text-white rounded">
                         Lihat
                     </a>
 
@@ -50,7 +50,7 @@
                           onsubmit="return confirm('Hapus pesan ini?');">
                         @csrf
                         @method('DELETE')
-                        <button class="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700">
+                        <button class="px-3 py-1 bg-red-700 text-white rounded">
                             Hapus
                         </button>
                     </form>

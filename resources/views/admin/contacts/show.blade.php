@@ -42,7 +42,7 @@
             @csrf
             @method('DELETE')
 
-            <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+            <button class="bg-red-700 text-white px-4 py-2 rounded">
                 Hapus Pesan
             </button>
         </form>

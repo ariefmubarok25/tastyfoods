@@ -56,12 +56,12 @@
         {{-- Tombol --}}
         <div class="flex items-center space-x-3">
             <button type="submit"
-                    class="px-5 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                    class="px-5 py-2 bg-green-800 text-white rounded hover:bg-blue-700">
                 Update
             </button>
 
             <a href="{{ route('admin.news.index') }}"
-               class="px-5 py-2 bg-gray-400 text-white rounded hover:bg-gray-500">
+               class="px-5 py-2 bg-gray-600 text-white rounded hover:bg-gray-500">
                 Kembali
             </a>
         </div>

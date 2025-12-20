@@ -9,19 +9,19 @@
 <!-- Tombol Tambah -->
 <div class="mb-6">
     <a href="{{ route('admin.gallery.create') }}"
-       class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+       class="px-4 py-2 bg-gray-800 text-white rounded hover:bg-blue-700">
         + Tambah Foto
     </a>
 </div>
 
 <div class="bg-white shadow rounded-lg p-4">
     <table class="min-w-full">
-        <thead class="bg-gray-100 border-b">
+        <thead class="bg-gray-900 border-b">
             <tr>
-                <th class="px-4 py-3 text-left">Foto</th>
-                <th class="px-4 py-3 text-left">Judul</th>
-                <th class="px-4 py-3 text-left">Deskripsi</th> {{-- Tambahan --}}
-                <th class="px-4 py-3 text-left">Aksi</th>
+                <th class="px-4 py-3 text-white text-left">Foto</th>
+                <th class="px-4 py-3 text-white text-left">Judul</th>
+                <th class="px-4 py-3 text-white text-left">Deskripsi</th> {{-- Tambahan --}}
+                <th class="px-4 py-3 text-white text-left">Aksi</th>
             </tr>
         </thead>
 
@@ -43,7 +43,7 @@
 
                 <td class="px-4 py-3">
                     <a href="{{ route('admin.gallery.edit', $item->id) }}"
-                       class="px-3 py-1 bg-yellow-500 text-white rounded">Edit</a>
+                       class="px-3 py-1 bg-green-800 text-white rounded">Edit</a>
 
                     <form action="{{ route('admin.gallery.destroy', $item->id) }}" 
                           method="POST" 
@@ -51,7 +51,7 @@
                           onsubmit="return confirm('Hapus foto ini?');">
                         @csrf
                         @method('DELETE')
-                        <button class="px-3 py-1 bg-red-600 text-white rounded">Hapus</button>
+                        <button class="px-3 py-1 bg-red-700 text-white rounded">Hapus</button>
                     </form>
                 </td>
             </tr>
