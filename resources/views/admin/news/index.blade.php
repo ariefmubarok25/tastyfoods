@@ -9,7 +9,7 @@
 <!-- Tombol Tambah -->
 <div class="mb-6">
     <a href="{{ route('admin.news.create') }}"
-       class="px-4 py-2 bg-gray-800 text-white rounded hover:bg-blue-700">
+       class="px-4 py-2 bg-gray-800 text-white rounded">
         + Tambah Berita
     </a>
 </div>
