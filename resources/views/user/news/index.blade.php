@@ -86,7 +86,7 @@
 
                         <a href="{{ route('news.show', $item->id) }}"
                         class="font-semibold text-orange-500 hover:text-orange-600 transition">
-                            Baca selengkapnya →
+                            Baca selengkapnya
                         </a>
 
                     </div>

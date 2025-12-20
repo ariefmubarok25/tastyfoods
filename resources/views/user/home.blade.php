@@ -138,9 +138,9 @@
                         <p class="text-gray-600 text-xs mb-2 line-clamp-2 leading-relaxed">
                             {{ Str::limit(strip_tags($news->excerpt ?? $news->content), 70) }}
                         </p>
-                        <a href="{{ route('news.show', $news->id) }}" class="text-primary text-xs font-semibold hover:text-orange-700 inline-flex items-center">
+                        <a href="{{ route('news.show', $item->id) }}"
+                        class="font-semibold text-orange-500 hover:text-orange-600 transition">
                             Baca selengkapnya
-                            <i class="fas fa-arrow-right ml-1 text-xs"></i>
                         </a>
                     </div>
                 </div>
