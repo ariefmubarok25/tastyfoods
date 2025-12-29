@@ -14,50 +14,67 @@
     </a>
 </div>
 
-<div class="bg-white shadow rounded-lg p-4">
+<div class="bg-white shadow rounded-lg p-4 overflow-x-auto">
     <table class="min-w-full">
         <thead class="bg-gray-900 border-b">
             <tr>
-                <th class="px-4 py-3 text-white text-left">Foto</th>
+                <th class="px-4 py-3 text-white text-left w-24">Gambar</th>
                 <th class="px-4 py-3 text-white text-left">Judul</th>
-                <th class="px-4 py-3 text-white text-left">Deskripsi</th> {{-- Tambahan --}}
-                <th class="px-4 py-3 text-white text-left">Aksi</th>
+
+                {{-- Deskripsi HANYA desktop --}}
+                <th class="px-4 py-3 text-white text-left hidden md:table-cell">
+                    Deskripsi
+                </th>
+
+                <th class="px-4 py-3 text-white text-left w-32">Aksi</th>
             </tr>
         </thead>
 
         <tbody>
             @forelse ($gallery as $item)
-            <tr class="border-b">
+            <tr class="border-b align-top">
+
+                <!-- Foto -->
                 <td class="px-4 py-3">
-                    <img src="{{ asset('storage/' . $item->image) }}" class="w-20 h-20 object-cover rounded">
+                    <img src="{{ asset('storage/' . $item->image) }}"
+                         class="w-20 h-20 object-cover rounded">
                 </td>
 
+                <!-- Judul -->
                 <td class="px-4 py-3 font-semibold">
                     {{ $item->title }}
                 </td>
 
-                {{-- Kolom Deskripsi --}}
-                <td class="px-4 py-3 text-gray-600">
-                    {{ $item->description ?? '-' }}
+                <!-- Deskripsi (desktop only) -->
+                <td class="px-4 py-3 text-gray-600 hidden md:table-cell">
+                    {{ Str::limit($item->description ?? '-', 80) }}
                 </td>
 
-                <td class="px-4 py-3">
+                <!-- Aksi (VERTIKAL seperti Berita) -->
+                <td class="px-4 py-3 space-y-2">
                     <a href="{{ route('admin.gallery.edit', $item->id) }}"
-                       class="px-3 py-1 bg-green-800 text-white rounded">Edit</a>
+                       class="block px-3 py-1 bg-green-800 text-white rounded text-center">
+                        Edit
+                    </a>
 
-                    <form action="{{ route('admin.gallery.destroy', $item->id) }}" 
-                          method="POST" 
-                          class="inline"
+                    <form action="{{ route('admin.gallery.destroy', $item->id) }}"
+                          method="POST"
                           onsubmit="return confirm('Hapus foto ini?');">
                         @csrf
                         @method('DELETE')
-                        <button class="px-3 py-1 bg-red-700 text-white rounded">Hapus</button>
+                        <button
+                            class="w-full px-3 py-1 bg-red-700 text-white rounded">
+                            Hapus
+                        </button>
                     </form>
                 </td>
+
             </tr>
             @empty
             <tr>
-                <td colspan="4" class="text-center py-6">Belum ada foto.</td>
+                <td colspan="4" class="text-center py-6">
+                    Belum ada foto.
+                </td>
             </tr>
             @endforelse
         </tbody>

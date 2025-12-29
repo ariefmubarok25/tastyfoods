@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\AuthController;
 
 
 // ==========================
@@ -38,12 +39,26 @@ Route::post('/kontak', [ContactController::class, 'store'])->name('contact.store
 
 
 
+
+// LOGIN ADMIN
+Route::get('/admin/login', [AuthController::class, 'loginForm'])
+    ->name('admin.login');
+
+Route::post('/admin/login', [AuthController::class, 'login'])
+    ->name('admin.login.submit');
+
+Route::post('/admin/logout', [AuthController::class, 'logout'])
+    ->name('admin.logout');
+
 // ==========================
 // ROUTE HALAMAN ADMIN
 // ==========================
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')
+    ->name('admin.')
+    ->middleware('admin')
+    ->group(function () {
 
-    // Dashboard Admin
+    // Dashboard
     Route::get('/', function () {
         $totalNews    = \App\Models\News::count();
         $totalGallery = \App\Models\Gallery::count();
@@ -51,10 +66,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.index', compact('totalNews', 'totalGallery'));
     })->name('dashboard');
 
-    // CRUD Berita UNTUK ADMIN
+    // CRUD News
     Route::resource('news', AdminNewsController::class);
 
-    // CRUD Gallery UNTUK ADMIN
+    // CRUD Gallery
     Route::resource('gallery', AdminGalleryController::class);
 
     // Lokasi

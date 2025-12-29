@@ -8,36 +8,40 @@
 
 @section('content')
 
-<!-- Hero Section (Overlap Navbar + 50% Right Image) -->
+<!-- Hero Section -->
 <section class="relative h-screen flex items-center overflow-hidden bg-gray-100">
 
-    <!-- Background Right 50% -->
-    <div class="absolute top-0 right-0 w-1/2 h-full">
+    <!-- Background Image -->
+    <div class="absolute inset-0 md:left-auto md:w-1/2 h-full">
         <img src="{{ asset('storage/user/hero_home.png') }}"
              class="w-full h-full object-cover object-top"
              alt="Hero Image">
+
+        <!-- Overlay khusus mobile biar teks kebaca -->
+        <div class="absolute inset-0 bg-black/30 md:hidden"></div>
     </div>
 
     <!-- Text Content -->
-    <div class="relative z-10 container mx-auto px-20">
-            <h1 class="text-3xl md:text-4xl lg:text-5xl font-light mb-4">
+    <div class="relative z-10 container mx-auto px-6 md:px-20 text-white md:text-black">
+
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-light mb-4">
             ____<br>
-            <h1 class="text-3xl md:text-4xl lg:text-5xl font-light mb-4">
             HEALTHY <br>
-                <span class="font-bold">TASTY FOOD</span>
-            </h1>
+            <span class="font-bold">TASTY FOOD</span>
+        </h1>
 
-            <p class="text-lg mb-8 max-w-lg">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae mauris vel massa fermentum tincidunt. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
-            </p>
+        <p class="text-base md:text-lg mb-8 max-w-lg">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae mauris vel massa fermentum tincidunt.
+        </p>
 
-            <a href="{{ route('about') }}" class="bg-gray-900 text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-800 transition duration-300 inline-block">
-                TENTANG KAMI
-            </a>
-        </div>
+        <a href="{{ route('about') }}"
+           class="inline-block bg-gray-900 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold hover:bg-gray-800 transition">
+            TENTANG KAMI
+        </a>
     </div>
 
 </section>
+
 
 
 
@@ -59,27 +63,32 @@
 </section>
 
 <section
-    class="pt-32 pb-20 -mt-32 bg-gray-900 bg-cover bg-top"
+    class="pt-40 pb-28 -mt-32 bg-gray-900 bg-cover bg-top"
     style="background-image: url('{{ asset('storage/user/Group70@2x.png') }}')">
 
     <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-24">
 
             @foreach ($galleries as $item)
-            <div class="bg-white rounded-2xl shadow-lg p-6 pt-20 text-center relative hover:shadow-xl transition duration-300">
+            <div class="bg-white rounded-lg md:rounded-2xl shadow-lg p-6 pt-24 text-center relative hover:shadow-xl transition duration-300">
 
-                {{-- Foto lingkaran mengambang --}}
-                <div class="w-40 h-40 rounded-full overflow-hidden absolute top-[-5rem] left-1/2 -translate-x-1/2 shadow-lg">
-                    <img src="{{ asset('storage/' . $item->image) }}" class="w-full h-full object-cover">
+                {{-- Foto lingkaran --}}
+                <div
+                    class="w-36 h-36 md:w-40 md:h-40
+                           rounded-full overflow-hidden
+                           absolute top-[-4rem] md:top-[-5rem]
+                           left-1/2 -translate-x-1/2 shadow-lg bg-white">
+                    <img src="{{ asset('storage/' . $item->image) }}"
+                         class="w-full h-full object-cover">
                 </div>
 
                 {{-- Judul --}}
-                <h3 class="text-xl font-bold text-gray-900 mb-3 mt-2">
+                <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">
                     {{ $item->title }}
                 </h3>
 
                 {{-- Deskripsi --}}
-                <p class="text-gray-600 text-sm">
+                <p class="text-gray-600 text-sm leading-relaxed line-clamp-4">
                     {{ $item->description }}
                 </p>
 
@@ -92,6 +101,8 @@
 
 
 
+
+
 <!-- Berita Kami Section -->
 <section class="py-16 bg-gray-100">
     <div class="container mx-auto px-4">
@@ -100,15 +111,20 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             @if($featuredNews)
             <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition duration-300">
-                <div class="h-[500px] overflow-hidden flex items-center justify-center bg-gray-100">
-                    @if($featuredNews->image)
-                        <img src="{{ asset('storage/' . $featuredNews->image) }}" alt="{{ $featuredNews->title }}" class="w-full h-full object-cover">
-                    @else
-                        <div class="bg-gradient-to-br from-green-200 to-blue-200 w-full h-full flex items-center justify-center">
-                            <span class="text-gray-600">No Image</span>
-                        </div>
-                    @endif
-                </div>
+               <div class="h-[200px] md:h-[500px] overflow-hidden flex items-center justify-center bg-gray-100">
+                @if($featuredNews->image)
+                    <img 
+                        src="{{ asset('storage/' . $featuredNews->image) }}" 
+                        alt="{{ $featuredNews->title }}" 
+                        class="w-full h-full object-cover"
+                    >
+                @else
+                    <div class="bg-gradient-to-br from-green-200 to-blue-200 w-full h-full flex items-center justify-center">
+                        <span class="text-gray-600">No Image</span>
+                    </div>
+                @endif
+              </div>
+
                 <div class="p-6">
                     <h3 class="text-2xl font-bold text-gray-900 mb-3">{{ $featuredNews->title }}</h3>
                     <p class="text-gray-600 mb-4">

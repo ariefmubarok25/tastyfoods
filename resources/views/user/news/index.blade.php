@@ -9,7 +9,8 @@
             <div class="absolute inset-0 bg-black/50"></div>
         </div>
 
-       <div class="relative z-10 text-white container mx-auto px-4 pl-20">
+        <div class="relative z-10 text-white container mx-auto px-4 
+                    text-center md:text-left md:pl-20">
             <h1 class="text-4xl md:text-5xl font-bold tracking-widest">
                 BERITA KAMI
             </h1>
@@ -38,8 +39,8 @@
                     {{ $featuredNews->title }}
                 </h2>
 
-                <p class="text-gray-600 leading-relaxed">
-                    {{ $featuredNews->excerpt ?? Str::limit(strip_tags($featuredNews->content), 300) }}
+                <p class="text-gray-600 leading-relaxed line-clamp-4">
+                    {{Str::limit(strip_tags($featuredNews->content), 300) }}
                 </p>
 
                 <a href="{{ route('news.show', $featuredNews->id) }}"
@@ -55,59 +56,53 @@
 
 
     {{-- Berita Lainnya --}}
-    <section class="py-12 bg-white">
-        <div class="container mx-auto px-12">
-            <h2 class="text-3xl font-bold text-left text-gray-800 mb-8">BERITA LAINNYA</h2>
+ <section class="py-12 bg-white">
+    <div class="container mx-auto px-4 md:px-12">
+        <h2 class="text-3xl font-bold text-left text-gray-800 mb-8">
+            BERITA LAINNYA
+        </h2>
 
-            @if($news->count())
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+        @if($news->count())
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 
-                @foreach($news as $item)
-                <div class="bg-white border rounded-lg overflow-hidden shadow-sm">
-                    
-                    {{-- Gambar --}}
-                    <div class="w-full h-48 overflow-hidden">
-                        @if($item->image)
-                            <img src="{{ asset('storage/' . $item->image) }}" class="w-full h-full object-cover">
-                        @else
-                            <div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-600 text-sm">
-                                No Image
-                            </div>
-                        @endif
-                    </div>
+            @foreach($news as $item)
+            <div class="bg-white border rounded-lg overflow-hidden shadow-sm flex flex-col">
 
-                    {{-- Konten --}}
-                    <div class="p-4">
-                        <h3 class="text-lg font-bold text-gray-800 mb-2">{{ $item->title }}</h3>
-
-                        <p class="text-gray-600 mb-4">
-                            {{ $item->excerpt ?? Str::limit(strip_tags($item->content), 120) }}
-                        </p>
-
-                        <a href="{{ route('news.show', $item->id) }}"
-                        class="font-semibold text-orange-500 hover:text-orange-600 transition">
-                            Baca selengkapnya
-                        </a>
-
-                    </div>
-
+                {{-- Gambar --}}
+                <div class="w-full h-32 md:h-40 overflow-hidden">
+                    @if($item->image)
+                        <img src="{{ asset('storage/' . $item->image) }}"
+                             class="w-full h-full object-cover">
+                    @else
+                        <div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-600 text-sm">
+                            No Image
+                        </div>
+                    @endif
                 </div>
-                @endforeach
+
+                {{-- Konten --}}
+                <div class="p-4 flex flex-col flex-1">
+                    <h3 class="text-base font-bold text-gray-800 mb-2 line-clamp-2">
+                        {{ $item->title }}
+                    </h3>
+
+                    <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+                        {{Str::limit(strip_tags($item->content), 120) }}
+                    </p>
+
+                    <a href="{{ route('news.show', $item->id) }}"
+                       class="mt-auto font-semibold text-orange-500 hover:text-orange-600 transition">
+                        Baca selengkapnya
+                    </a>
+                </div>
 
             </div>
-
-            {{-- Pagination --}}
-            @if($news->hasPages())
-            <div class="mt-6 text-center">
-                {{ $news->links() }}
-            </div>
-            @endif
-
-            @else
-            <p class="text-center text-gray-600">Belum ada berita lainnya.</p>
-            @endif
+            @endforeach
 
         </div>
-    </section>
+        @endif
+    </div>
+</section>
+
 
 @endsection

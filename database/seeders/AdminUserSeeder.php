@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 
-class DatabaseSeeder extends Seeder
+class AdminUserSeeder extends Seeder
 {
     public function run(): void
     {
@@ -16,3 +17,4 @@ class DatabaseSeeder extends Seeder
         ]);
     }
 }
+

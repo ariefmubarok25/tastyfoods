@@ -11,7 +11,8 @@
             <div class="absolute inset-0 bg-black/50"></div>
         </div>
 
-       <div class="relative z-10 text-white container mx-auto px-4 pl-20">
+        <div class="relative z-10 text-white container mx-auto px-4 
+                    text-center md:text-left md:pl-20">
             <h1 class="text-4xl md:text-5xl font-bold tracking-widest">
                 KONTAK KAMI
             </h1>

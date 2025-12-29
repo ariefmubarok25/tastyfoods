@@ -25,9 +25,10 @@
     <div class="flex {{$menuPosition}} items-center justify-between">
 
         {{-- LOGO --}}
-    <div class="text-white md:{{$textColor}} text-lg font-semibold {{ $logoColor }} ml-10">
+    <div class="text-white md:{{$textColor}} text-lg font-semibold {{ $logoColor }} ml-2 md:ml-10">
         TASTY FOOD
     </div>
+
 
 
         {{-- BUTTON HAMBURGER (MOBILE) --}}

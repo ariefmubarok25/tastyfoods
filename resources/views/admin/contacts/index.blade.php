@@ -12,25 +12,39 @@
 </div>
 @endif
 
-<div class="bg-white shadow rounded-lg p-4">
+<div class="bg-white shadow rounded-lg p-4 overflow-x-auto">
     <table class="min-w-full">
         <thead class="bg-gray-900 border-b">
             <tr>
-                <th class="px-4 py-3 text-white text-left">Nama</th>
-                <th class="px-4 py-3 text-white text-left">Email</th>
-                <th class="px-4 py-3 text-white text-left">Subjek</th>
-                <th class="px-4 py-3 text-white text-left">Aksi</th>
+                {{-- Nama (HILANG DI MOBILE) --}}
+                <th class="px-4 py-3 text-white text-left hidden md:table-cell">
+                    Nama
+                </th>
+
+                <th class="px-4 py-3 text-white text-left">
+                    Email
+                </th>
+
+                <th class="px-4 py-3 text-white text-left">
+                    Subjek
+                </th>
+
+                <th class="px-4 py-3 text-white text-left">
+                    Aksi
+                </th>
             </tr>
         </thead>
 
         <tbody>
             @forelse($contacts as $contact)
             <tr class="border-b">
-                <td class="px-4 py-3 font-medium">
+
+                {{-- Nama (HILANG DI MOBILE) --}}
+                <td class="px-4 py-3 font-medium hidden md:table-cell">
                     {{ $contact->name }}
                 </td>
 
-                <td class="px-4 py-3 text-gray-700">
+                <td class="px-4 py-3 text-gray-700 break-all">
                     {{ $contact->email }}
                 </td>
 
@@ -38,19 +52,19 @@
                     {{ $contact->subject }}
                 </td>
 
-                <td class="px-4 py-3 space-x-2">
+                {{-- Aksi --}}
+                <td class="px-4 py-3 space-y-2">
                     <a href="{{ route('admin.contacts.show', $contact->id) }}"
-                       class="px-3 py-1 bg-green-800 text-white rounded">
+                       class="block text-center px-3 py-1 bg-green-800 text-white rounded">
                         Lihat
                     </a>
 
                     <form action="{{ route('admin.contacts.destroy', $contact->id) }}"
                           method="POST"
-                          class="inline"
                           onsubmit="return confirm('Hapus pesan ini?');">
                         @csrf
                         @method('DELETE')
-                        <button class="px-3 py-1 bg-red-700 text-white rounded">
+                        <button class="w-full px-3 py-1 bg-red-700 text-white rounded">
                             Hapus
                         </button>
                     </form>
@@ -67,7 +81,7 @@
     </table>
 </div>
 
-{{-- Pagination jika ada --}}
+{{-- Pagination --}}
 @if(method_exists($contacts, 'links'))
 <div class="mt-6">
     {{ $contacts->links() }}
